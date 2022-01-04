@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Home from "./Components/Home/Home";
+import Login from "./Components/Authentication/Login";
+import {HashRouter as Router, Route, Routes} from "react-router-dom";
+import {Register} from "./Components/Authentication/Register";
+import {Container} from "react-bootstrap";
+import NavigationBarTop from "./Components/Nav/NavigationBarTop";
+import Profile from "./Components/Profile/Profile";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Container fluid className="p-0">
+          <NavigationBarTop/>
+          <Container className="pt-4">
+              <Router>
+                  <Routes>
+                      <Route path="/" element={<Home/>}/>
+                      <Route path="/login" element={<Login/>}/>
+                      <Route path="/register" element={<Register/>}/>
+                      <Route path="/profile/:id" element={<Profile/>}/>
+                  </Routes>
+              </Router>
+          </Container>
+      </Container>
   );
 }
 
