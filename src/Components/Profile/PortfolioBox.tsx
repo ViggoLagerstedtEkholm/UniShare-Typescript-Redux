@@ -1,23 +1,32 @@
 import {Container, Tab, Tabs} from "react-bootstrap";
+import Projects from "./Projects/Projects";
+import Degrees from "./Degrees/Degrees";
+import FilterBox from "../Search/Filter/Main/FilterBox";
+import Thesis from "./Thesis";
 
 function PortfolioBox(){
     return(
         <Container className="bg-secondary bg-opacity-25 p-4 rounded">
-            <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example" className="mb-3">
-                <Tab eventKey="home" title="Projects">
-                   <h1>Projects</h1>
+            <Tabs defaultActiveKey="projects" id="uncontrolled-tab-example" className="mb-3">
+                <Tab eventKey="projects" title="Projects">
+                    <h2 className="bg-secondary bg-opacity-10 p-3">Projects</h2>
+                    <Projects/>
                 </Tab>
-                <Tab eventKey="profile" title="Thesis">
-                    <h1>Thesis</h1>
+                <Tab eventKey="thesis" title="Thesis">
+                    <h2 className="bg-secondary bg-opacity-10 p-3">Thesis</h2>
+                    <Thesis/>
                 </Tab>
-                <Tab eventKey="contact" title="Degree">
-                    <h1>Degree</h1>
+                <Tab eventKey="degrees" title="Degree">
+                    <h2 className="bg-secondary bg-opacity-10 p-3">Degrees</h2>
+                    <Degrees/>
                 </Tab>
                 <Tab eventKey="ratings" title="Ratings">
-                    <h1>Ratings</h1>
+                    <h2 className="bg-secondary bg-opacity-10 p-3">Ratings</h2>
+                    <FilterBox/>
                 </Tab>
                 <Tab eventKey="reviews" title="Reviews">
-                    <h1>Reviews</h1>
+                    <h2 className="bg-secondary bg-opacity-10 p-3">Reviews</h2>
+                    <FilterBox/>
                 </Tab>
             </Tabs>
         </Container>
