@@ -1,4 +1,4 @@
-import {Container, Nav, Navbar} from "react-bootstrap";
+import {Button, Container, Nav, Navbar} from "react-bootstrap";
 
 function NavigationBarTop(){
     const loggedInd = true;
@@ -9,6 +9,7 @@ function NavigationBarTop(){
                 <Nav.Link href="/" className="text-white">Home</Nav.Link>
                 <Nav.Link href="/#/profile" className="text-white">Profile</Nav.Link>
                 <Nav.Link href="/#/friends" className="text-white">Friends</Nav.Link>
+                <Nav.Link href="/#/discover" className="text-white">Discover</Nav.Link>
             </>
         )
     }
@@ -19,6 +20,7 @@ function NavigationBarTop(){
                 <Nav.Link href="/" className="text-white">Home</Nav.Link>
                 <Nav.Link href="/#/login" className="text-white">Login</Nav.Link>
                 <Nav.Link href="/#/register" className="text-white">Register</Nav.Link>
+                <Nav.Link href="/#/discover" className="text-white">Discover</Nav.Link>
             </>
         )
     }
@@ -31,8 +33,10 @@ function NavigationBarTop(){
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto text-white">
                         {loggedInd ? renderLoggedIn() : renderNotLoggedIn()}
+                        <Button href="/#/discover" className="text-white bg-transparent border-white mx-4">Logout</Button>
                     </Nav>
                 </Navbar.Collapse>
+
                 <Navbar.Text className="text-white">
                     Welcome, Viggo Lagerstedt Ekholm
                 </Navbar.Text>

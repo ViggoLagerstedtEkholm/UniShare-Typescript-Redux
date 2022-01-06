@@ -1,14 +1,19 @@
-import {Card, Col, Image, Row, Stack} from "react-bootstrap";
+import {Button, Card, Col, Image, Row, Stack} from "react-bootstrap";
 
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { HiBookOpen } from "react-icons/hi";
 import { VscGithubInverted } from "react-icons/vsc";
+import {useAuthContext} from "../Context/AuthContext";
+import {useNavigate} from "react-router-dom";
 
 interface Props{
     id: string | undefined;
 }
 
 function Details({id}: Props){
+    const {isLoggedIn} = useAuthContext();
+    const navigate = useNavigate();
+
     return(
         <Card className="bg-secondary bg-opacity-25 p-4 rounded">
             <Card.Body>
@@ -23,6 +28,10 @@ function Details({id}: Props){
                             <span><HiBookOpen/> Repos</span>
                             <span><VscGithubInverted/> GitHub</span>
                         </Stack>
+
+                        {!isLoggedIn ? <Button className="mt-3" onClick={() => navigate('/settings')}>
+                            Settings
+                        </Button> : null}
                     </Col>
                     <Col xs={12} xl={12} md={12} sm={12} lg={6}>
                         <h1>ID: {id}</h1>

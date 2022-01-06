@@ -1,6 +1,11 @@
+import {Container} from "react-bootstrap";
+
 function Received(){
     return(
-        <h1>Received</h1>
+        <Container>
+            <h1 className="bg-secondary bg-opacity-10 p-4 rounded">Received</h1>
+            <hr/>
+        </Container>
     )
 }
 

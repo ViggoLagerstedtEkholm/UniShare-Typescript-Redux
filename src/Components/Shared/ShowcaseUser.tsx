@@ -1,6 +1,9 @@
 import {Card, Col, Image, Row} from "react-bootstrap";
+import {useAuthContext} from "../Context/AuthContext";
 
 function ShowcaseUser() {
+    const {username} = useAuthContext();
+
     return (
         <Row>
             <Card className="bg-secondary bg-opacity-25 p-4 rounded">
@@ -10,7 +13,7 @@ function ShowcaseUser() {
                             <Image src="https://picsum.photos/id/237/300/300" roundedCircle/>
                         </Col>
                         <Col xs={12} md={12} sm={12} lg={7}>
-                            <h2>Lorem Ipsum</h2>
+                            <h2>{username}</h2>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed vestibulum eros, eu
                                 fringilla diam. Suspendisse vel imperdiet risus. Ut ut odio id tellus condimentum tincidunt

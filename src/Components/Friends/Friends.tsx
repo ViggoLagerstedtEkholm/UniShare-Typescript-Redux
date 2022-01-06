@@ -1,6 +1,11 @@
+import {Container} from "react-bootstrap";
+
 function Friends(){
     return(
-        <h1>Friends list</h1>
+        <Container>
+            <h1 className="bg-secondary bg-opacity-10 p-4 rounded">Friend list</h1>
+            <hr/>
+        </Container>
     )
 }
 
