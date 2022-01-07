@@ -1,10 +1,11 @@
-import {MoonLoader} from "react-spinners";
-import React from "react";
+import {Spinner} from "react-bootstrap";
 
-export const Loading: React.FC = () =>{
+function Loading(){
     return(
-      <div className="loading">
-          <MoonLoader color={"#00ccfc"} loading={true} size={100}/>
-      </div>
+        <Spinner animation="border" role="status">
+            <span className="visually-hidden text-center">Loading...</span>
+        </Spinner>
     );
 }
+
+export default Loading;

@@ -1,10 +1,11 @@
 import {Col, Row} from "react-bootstrap";
 
-function Overview(){
-    const users = 10;
-    const courses = 15;
-    const reviews = 255;
+interface Props{
+    users: number | undefined;
+    courses: number | undefined;
+}
 
+function Overview({ users, courses }:Props){
     return(
         <Row className="bg-secondary bg-opacity-25 p-4 rounded">
             <Col className="text-center border-end">
@@ -12,14 +13,9 @@ function Overview(){
                 <h2>{users}</h2>
             </Col>
 
-            <Col className="text-center border-end">
+            <Col className="text-center">
                 <h2>Courses</h2>
                 <h2>{courses}</h2>
-            </Col>
-
-            <Col className="text-center">
-                <h2>Reviews</h2>
-                <h2>{reviews}</h2>
             </Col>
         </Row>
     )

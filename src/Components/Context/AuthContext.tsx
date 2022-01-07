@@ -12,7 +12,7 @@ const isOwner = (pageID: string, id: string): boolean => {
 const useAuth = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState("Viggo");
-    const [id, setID] = useState("1");
+    const [id, setID] = useState("horken");
 
     return {
         isLoggedIn,
