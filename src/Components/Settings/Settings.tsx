@@ -4,7 +4,8 @@ import {useState} from "react";
 import Account from "./Account";
 import Handles from "./Handles";
 import Password from "./Password";
-import {useNavigate} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
+import ImageUpload from "./ImageUpload";
 
 function Settings(){
     const [page, setPage] = useState(0);
@@ -15,7 +16,7 @@ function Settings(){
             case 0: return <Account/>
             case 1: return <Handles/>
             case 2: return <Password/>
-
+            case 3: return <ImageUpload/>
             default: return <h1>No such page</h1>
         }
     }
@@ -23,7 +24,7 @@ function Settings(){
     return(
         <Container>
             <Row>
-                <Button className="w-25 bg-transparent border-white mx-3 mb-4" onClick={() => navigation('/profile/55')}>
+                <Button className="w-25 bg-transparent border-white mx-3 mb-4" onClick={() => navigation(-1)}>
                     Go back
                 </Button>
                 <hr/>

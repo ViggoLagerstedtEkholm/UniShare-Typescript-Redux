@@ -33,7 +33,7 @@ function CoursePreview(item: Props){
                             <p><FcRating/> {values.rating}</p>
                             <p><MdDateRange/> {values.added}</p>
                             <p><BiBookAlt/> University: {values.university}</p>
-                            <p>{values.code}</p>
+                            <p className="bg-secondary bg-opacity-10 p-4"><b>{values.code}</b></p>
                         </Stack>
                     </Col>
                 </Row>

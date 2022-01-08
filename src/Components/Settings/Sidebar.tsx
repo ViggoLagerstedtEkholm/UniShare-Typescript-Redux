@@ -17,6 +17,9 @@ function Sidebar({setPage} : Props){
             <Button className="bg-transparent" onClick={() => setPage(2)}>
                 Change Password
             </Button>
+            <Button className="bg-transparent" onClick={() => setPage(3)}>
+                Image
+            </Button>
         </Stack>
     )
 }

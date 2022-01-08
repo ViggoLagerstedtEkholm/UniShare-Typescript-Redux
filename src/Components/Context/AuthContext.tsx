@@ -11,7 +11,7 @@ const isOwner = (pageID: string, id: string): boolean => {
 // Custom hook implementation
 const useAuth = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [username, setUsername] = useState("Viggo");
+    const [username, setUsername] = useState("horken");
     const [id, setID] = useState("horken");
 
     return {

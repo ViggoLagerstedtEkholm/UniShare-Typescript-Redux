@@ -5,6 +5,7 @@ import Details from "./Details";
 import {createContext, useEffect, useState} from "react";
 import axios from "axios";
 import Loading from "../Shared/Loading";
+import NotFound from "../Shared/NotFound";
 
 export interface Profile {
     id: string;
@@ -28,17 +29,26 @@ function Profile(){
     const {id} = useParams();
     const [profile, setProfile] = useState<Profile | null>(null);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [missing, setMissing] = useState(false);
 
     useEffect(() =>{
         axios.get<Profile>("https://localhost:5001/api/Profile/" + id)
             .then((response) => {
                 setProfile(response.data);
-            }).catch(error => {
-                console.log(error);
+            }).catch(() => {
+                setMissing(true);
             }).finally(() => {
                 setIsLoaded(true);
             })
+
+        if(id){
+            axios.post("https://localhost:5001/api/Profile/append/" + id).then(r => console.log(r));
+        }
     }, [])
+
+    if(missing){
+        return <NotFound/>
+    }
 
     if(!isLoaded){
         return (
