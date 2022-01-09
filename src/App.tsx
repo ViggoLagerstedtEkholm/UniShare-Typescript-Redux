@@ -10,6 +10,7 @@ import NotFound from "./Components/Shared/NotFound";
 import {AuthProvider} from "./Components/Context/AuthContext";
 import Settings from "./Components/Settings/Settings";
 import Discover from "./Components/Discover/Discover";
+import Course from "./Components/Course/Course";
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                             <Route path="/friends" element={<Overview/>}/>
                             <Route path="/settings" element={<Settings/>}/>
                             <Route path="/discover" element={<Discover/>}/>
+                            <Route path="/course/:id" element={<Course/>}/>
                             <Route path="*" element={<NotFound/>}/>
                         </Routes>
                     </Router>

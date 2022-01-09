@@ -2,14 +2,14 @@ import {Button, Container, Nav, Navbar} from "react-bootstrap";
 import {useAuthContext} from "../Context/AuthContext";
 
 function NavigationBarTop(){
-    const {id} = useAuthContext();
+    const {username} = useAuthContext();
     const loggedInd = true;
 
     function renderLoggedIn(){
         return(
             <>
                 <Nav.Link href="/" className="text-white">Home</Nav.Link>
-                <Nav.Link href={"/#/profile/" + id} className="text-white">Profile</Nav.Link>
+                <Nav.Link href={"/#/profile/" + username} className="text-white">Profile</Nav.Link>
                 <Nav.Link href="/#/friends/" className="text-white">Friends</Nav.Link>
                 <Nav.Link href="/#/discover" className="text-white">Discover</Nav.Link>
             </>

@@ -4,7 +4,7 @@ import {useAuthContext} from "../Context/AuthContext";
 import axios from "axios";
 import Loading from "../Shared/Loading";
 
-function ImageUpload(){
+function Images(){
     const user = useAuthContext();
     const [image, setImage] = useState("");
 
@@ -51,4 +51,4 @@ function ImageUpload(){
     )
 }
 
-export default ImageUpload;
+export default Images;

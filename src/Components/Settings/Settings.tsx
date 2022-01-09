@@ -5,7 +5,7 @@ import Account from "./Account";
 import Handles from "./Handles";
 import Password from "./Password";
 import { useNavigate} from "react-router-dom";
-import ImageUpload from "./ImageUpload";
+import Images from "./Images";
 
 function Settings(){
     const [page, setPage] = useState(0);
@@ -16,7 +16,7 @@ function Settings(){
             case 0: return <Account/>
             case 1: return <Handles/>
             case 2: return <Password/>
-            case 3: return <ImageUpload/>
+            case 3: return <Images/>
             default: return <h1>No such page</h1>
         }
     }

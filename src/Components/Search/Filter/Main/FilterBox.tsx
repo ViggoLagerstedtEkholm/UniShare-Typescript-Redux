@@ -1,23 +1,49 @@
-import React, {useEffect} from "react";
+import React, {ReactNode, useEffect} from "react";
 import FilterConfigurationBox from "./FilterConfigurationBox";
 import Pagination from "../Pagination/Pagination";
 import TopPagination from "../Pagination/TopPagination";
-import {Container} from "react-bootstrap";
+import {Stack} from "react-bootstrap";
+import axios from "axios";
+import {useFilterContext} from "../../../Context/InputValueContext";
+import ResultInfo from "./ResultInfo";
 
-function FilterBox() {
+interface Props{
+    children: ReactNode;
+}
+
+function FilterBox(props: Props) {
+    const {selectedOption, search, page, order, api, setResult, activeDegreeUserId, pagination, applyResultCount, setPagination} = useFilterContext();
 
     useEffect(() => {
-        //DO API CALL
-    }, [])
+        const query = async () => {
+            return await axios.post(api, {
+                Page: page,
+                Order: order,
+                Search: search,
+                Option: selectedOption,
+                ...(activeDegreeUserId) && {ActiveDegreeUserId: activeDegreeUserId}
+            });
+        }
+
+        query().then(response => {
+            setResult(response.data, search);
+            applyResultCount(response.data.totalMatches);
+            setPagination(response.data.pagination);
+        }).catch(error => console.log(error));
+    }, [page, selectedOption, search, order])
 
     return (
-        <Container className="bg-secondary bg-opacity-10 text-white pt-2">
+        <Stack>
             <FilterConfigurationBox open={true}/>
+            <ResultInfo/>
             <hr/>
             <TopPagination/>
-            <h2>Results</h2>
+            <p className="text-center bg-secondary bg-opacity-10 p-2 mt-2">
+                Range: <b>{pagination && pagination?.pageFirstResultIndex + 1} - {pagination && pagination?.pageFirstResultIndex + 10}</b>
+            </p>
+            {props.children}
             <Pagination/>
-        </Container>
+        </Stack>
     )
 }
 

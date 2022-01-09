@@ -1,7 +1,6 @@
 import {Container, Tab, Tabs} from "react-bootstrap";
 import Projects from "./Projects/Projects";
 import Degrees from "./Degrees/Degrees";
-import FilterBox from "../Search/Filter/Main/FilterBox";
 import Thesis from "./Thesis";
 
 function PortfolioBox(){
@@ -22,11 +21,9 @@ function PortfolioBox(){
                 </Tab>
                 <Tab eventKey="ratings" title="Ratings">
                     <h2 className="bg-secondary bg-opacity-10 p-3">Ratings</h2>
-                    <FilterBox/>
                 </Tab>
                 <Tab eventKey="reviews" title="Reviews">
                     <h2 className="bg-secondary bg-opacity-10 p-3">Reviews</h2>
-                    <FilterBox/>
                 </Tab>
             </Tabs>
         </Container>

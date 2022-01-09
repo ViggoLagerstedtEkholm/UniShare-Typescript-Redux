@@ -1,11 +1,31 @@
 import {Container} from "react-bootstrap";
-import FilterBox from "../Search/Filter/Main/FilterBox";
+import DiscoverNav from "../Nav/DiscoverNav";
+import CoursesSearch from "./Courses/CoursesSearch";
+import {useState} from "react";
+import PeopleSearch from "./PeopleSearch/PeopleSearch";
 
-function Discover(){
-    return(
+export enum Page {
+    Courses = "Courses",
+    People = "People"
+}
+
+function Discover() {
+    const [pageIndex, setPageIndex] = useState<Page>(Page.Courses);
+
+    function showPage() {
+        switch (pageIndex) {
+            case Page.Courses:
+                return <CoursesSearch/>
+            case Page.People:
+                return <PeopleSearch/>
+        }
+    }
+
+    return (
         <Container>
-            <h1>Discover</h1>
-            <FilterBox/>
+            <DiscoverNav setPageIndex={setPageIndex}/>
+            <hr/>
+            {showPage()}
         </Container>
     )
 }
