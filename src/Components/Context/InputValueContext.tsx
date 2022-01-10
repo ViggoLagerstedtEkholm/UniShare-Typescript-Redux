@@ -9,15 +9,15 @@ export enum Order {
 export type OptionsMap = Record<string, string>;
 
 export interface Filter<Payload>{
-    page: number;
-    search: string;
-    order: Order;
-    options: OptionsMap;
-    showFilter: boolean;
-    selectedOption: string;
+    Page: number;
+    Search: string;
+    Order: Order;
+    Options: OptionsMap;
+    ShowFilter: boolean;
+    SelectedOption: string;
     APIEndpoint: string;
-    result: (result : Payload | null, search: string) => void;
-    activeDegreeUserId?: string;
+    Result: (result : Payload | null, search: string) => void;
+    ProfileId?: string;
 }
 
 const incrementPage = (page: number): number => page + 1;
@@ -25,18 +25,18 @@ const decrementPage = (page: number): number => page - 1;
 
 // Custom hook implementation
 const useFilter = (initialState: Filter<any>) => {
-    const [page, setPage] = useState(initialState.page);
-    const [search, setSearch] = useState(initialState.search);
-    const [selectedOption, setSelectedOption] = useState(initialState.selectedOption);
+    const [page, setPage] = useState(initialState.Page);
+    const [search, setSearch] = useState(initialState.Search);
+    const [selectedOption, setSelectedOption] = useState(initialState.SelectedOption);
     const [resultCount, setResultCount] = useState(0);
-    const [order, setOrder] = useState(initialState.order);
+    const [order, setOrder] = useState(initialState.Order);
     const [pagination, setPagination] = useState<Pagination |null>(null);
 
     return {
-        setResult: initialState.result,
+        setResult: initialState.Result,
         api: initialState.APIEndpoint,
-        activeDegreeUserId: initialState.activeDegreeUserId,
-        options: initialState.options,
+        ProfileId: initialState.ProfileId,
+        options: initialState.Options,
         page,
         selectedOption,
         search,

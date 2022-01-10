@@ -12,7 +12,7 @@ interface Props{
 }
 
 function FilterBox(props: Props) {
-    const {selectedOption, search, page, order, api, setResult, activeDegreeUserId, pagination, applyResultCount, setPagination} = useFilterContext();
+    const {selectedOption, search, page, order, api, setResult, ProfileId, pagination, applyResultCount, setPagination} = useFilterContext();
 
     useEffect(() => {
         const query = async () => {
@@ -21,7 +21,7 @@ function FilterBox(props: Props) {
                 Order: order,
                 Search: search,
                 Option: selectedOption,
-                ...(activeDegreeUserId) && {ActiveDegreeUserId: activeDegreeUserId}
+                ...(ProfileId) && {ProfileId: ProfileId}
             });
         }
 

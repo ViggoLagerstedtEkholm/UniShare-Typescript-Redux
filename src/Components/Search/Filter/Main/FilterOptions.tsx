@@ -9,7 +9,7 @@ function FilterOptions() {
     });
 
     return (
-        <Card className="bg-secondary p-2 bg-opacity-10 rounded">
+        <Card className="bg-secondary bg-opacity-10">
             <Card.Body>
                 <h1>Filter</h1>
 

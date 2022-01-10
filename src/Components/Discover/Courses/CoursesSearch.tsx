@@ -1,10 +1,9 @@
-import {Container} from "react-bootstrap";
+import {Container, Spinner} from "react-bootstrap";
 import FilterBox from "../../Search/Filter/Main/FilterBox";
 import {useState} from "react";
 import {Filter, FilterProvider, OptionsMap, Order} from "../../Context/InputValueContext";
 import {useAuthContext} from "../../Context/AuthContext";
 import CourseSearchPreviewItem from "./CourseSearchPreviewItem";
-import Loading from "../../Shared/Loading";
 
 export interface Course {
     id: number;
@@ -51,15 +50,15 @@ function CoursesSearch(){
     };
 
     const filter: Filter<CourseSearch> = {
-        page: 1,
-        search: "",
-        order: Order.Descending,
-        options: options,
-        showFilter: true,
-        activeDegreeUserId: id,
-        selectedOption: options.Name,
+        Page: 1,
+        Search: "",
+        Order: Order.Descending,
+        Options: options,
+        ShowFilter: true,
+        ProfileId: id,
+        SelectedOption: options.Name,
         APIEndpoint: 'https://localhost:5001/api/Search/courses',
-        result: onResults
+        Result: onResults
     }
 
     function onResults(results: CourseSearch | null, search: string) {
@@ -71,7 +70,7 @@ function CoursesSearch(){
         <Container>
             <FilterProvider startFilter={filter}>
                 <FilterBox>
-                    {!results ? <Loading/> : null}
+                    {!results ? <Spinner animation="grow" variant="light" className="m-auto"/> : null}
 
                     {
                         results?.courses?.map((course, index) =>{

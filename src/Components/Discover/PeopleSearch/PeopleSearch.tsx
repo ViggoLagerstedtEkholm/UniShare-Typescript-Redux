@@ -1,7 +1,6 @@
-import {Container} from "react-bootstrap";
+import {Container, Spinner} from "react-bootstrap";
 import {Filter, FilterProvider, OptionsMap, Order} from "../../Context/InputValueContext";
 import FilterBox from "../../Search/Filter/Main/FilterBox";
-import Loading from "../../Shared/Loading";
 import {useState} from "react";
 import {Pagination} from "../Courses/CoursesSearch";
 import PeopleSearchPreviewItem from "./PeopleSearchPreviewItem";
@@ -40,18 +39,17 @@ function PeopleSearch(){
     };
 
     const filter: Filter<UserSearch> = {
-        page: 1,
-        search: "",
-        order: Order.Descending,
-        options: options,
-        showFilter: true,
-        selectedOption: options.Visits,
+        Page: 1,
+        Search: "",
+        Order: Order.Descending,
+        Options: options,
+        ShowFilter: true,
+        SelectedOption: options.Visits,
         APIEndpoint: 'https://localhost:5001/api/Search/users',
-        result: onResults
+        Result: onResults
     }
 
     function onResults(results: UserSearch | null, search: string) {
-        console.log(results);
         setSearch(search);
         setResults(results);
     }
@@ -60,7 +58,7 @@ function PeopleSearch(){
         <Container>
             <FilterProvider startFilter={filter}>
                 <FilterBox>
-                    {!results ? <Loading/> : null}
+                    {!results ? <Spinner animation="grow" variant="light" className="m-auto"/> : null}
 
                     {
                         results?.users.map((user, index) =>{

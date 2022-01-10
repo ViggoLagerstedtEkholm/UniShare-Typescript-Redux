@@ -17,7 +17,13 @@ function FilterConfigurationBox({open}: Props) {
     return (
         <Container fluid>
             <Button className="btn btn-primary w-100 mb-3" onClick={toggle}> Toggle filtering.</Button>
-            {showFilterBoxState ? <FilterOptions/> : <FilterInfo/>}
+            {showFilterBoxState &&
+                <Container>
+                    <FilterOptions/>
+                    <hr/>
+                    <FilterInfo/>
+                </Container>
+            }
         </Container>
     );
 }

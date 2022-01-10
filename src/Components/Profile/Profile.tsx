@@ -6,6 +6,7 @@ import {createContext, useEffect, useState} from "react";
 import axios from "axios";
 import Loading from "../Shared/Loading";
 import NotFound from "../Shared/NotFound";
+import CommentSearch from "../Comments/CommentSearch";
 
 export interface Profile {
     id: string;
@@ -64,6 +65,7 @@ function Profile(){
                 <Stack className="gap-4">
                     <Details/>
                     <PortfolioBox/>
+                    {id && <CommentSearch username={id}/>}
                 </Stack>
             </Container>
         </ProfileContext.Provider>
