@@ -1,9 +1,9 @@
 import {Container, Spinner} from "react-bootstrap";
 import FilterBox from "../../Search/Filter/Main/FilterBox";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {Filter, FilterProvider, OptionsMap, Order} from "../../Context/InputValueContext";
-import {useAuthContext} from "../../Context/AuthContext";
 import CourseSearchPreviewItem from "./CourseSearchPreviewItem";
+import {AuthContext} from "../../../App";
 
 export interface Course {
     id: number;
@@ -34,8 +34,7 @@ export interface CourseSearch {
 function CoursesSearch(){
     const [results, setResults] = useState<CourseSearch | null>(null);
     const [search, setSearch] = useState("");
-
-    const {id} = useAuthContext();
+    const {state} = useContext(AuthContext);
 
     const options: OptionsMap = {
         Name: 'Name',
@@ -55,7 +54,7 @@ function CoursesSearch(){
         Order: Order.Descending,
         Options: options,
         ShowFilter: true,
-        ProfileId: id,
+        ProfileId: state.id,
         SelectedOption: options.Name,
         APIEndpoint: 'https://localhost:5001/api/Search/courses',
         Result: onResults
@@ -70,7 +69,7 @@ function CoursesSearch(){
         <Container>
             <FilterProvider startFilter={filter}>
                 <FilterBox>
-                    {!results ? <Spinner animation="grow" variant="light" className="m-auto"/> : null}
+                    {!results && <Spinner animation="grow" variant="light" className="m-auto my-3"/>}
 
                     {
                         results?.courses?.map((course, index) =>{

@@ -58,7 +58,7 @@ function PeopleSearch(){
         <Container>
             <FilterProvider startFilter={filter}>
                 <FilterBox>
-                    {!results ? <Spinner animation="grow" variant="light" className="m-auto"/> : null}
+                    {!results && <Spinner animation="grow" variant="light" className="m-auto my-3"/>}
 
                     {
                         results?.users.map((user, index) =>{

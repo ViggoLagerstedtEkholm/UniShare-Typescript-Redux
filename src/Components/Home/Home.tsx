@@ -1,10 +1,10 @@
-import React, {createContext, useEffect, useState} from "react";
+import React, {createContext, useContext, useEffect, useState} from "react";
 import {Stack} from "react-bootstrap";
 import Overview from "./Overview";
 import ShowcaseUser from "../Shared/ShowcaseUser";
-import {useAuthContext} from "../Context/AuthContext";
 import axios from "axios";
 import Courses from "./Courses/Courses";
+import {AuthContext} from "../../App";
 
 export interface Course {
     id: number;
@@ -29,7 +29,7 @@ export interface Statistics {
 export const OverviewContext = createContext<Statistics | null>(null);
 
 function Home() {
-    const {isLoggedIn} = useAuthContext();
+    const {state} = useContext(AuthContext);
     const [data, setData] = useState<Statistics | null>(null);
 
     useEffect(() => {
@@ -45,7 +45,7 @@ function Home() {
         <OverviewContext.Provider value={data}>
             <Stack className="gap-4">
                 {
-                    isLoggedIn ? <ShowcaseUser/> : <h2>Hello! Welcome to UniShare</h2>
+                    state?.isAuth ? <ShowcaseUser/> : <h2>Hello! Welcome to UniShare</h2>
                 }
                 <Overview courses={data?.courses} users={data?.people}/>
                 <Courses/>

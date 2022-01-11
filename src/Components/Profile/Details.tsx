@@ -8,17 +8,16 @@ import { GoPerson } from "react-icons/go";
 import { BsFillEyeFill } from "react-icons/bs";
 import { MdDateRange } from "react-icons/md";
 
-import {useAuthContext} from "../Context/AuthContext";
 import {useNavigate} from "react-router-dom";
 import {ProfileContext} from "./Profile";
 import {useContext} from "react";
+import {AuthContext} from "../../App";
 
 
 function Details(){
-    const {isLoggedIn} = useAuthContext();
+    const {state} = useContext(AuthContext);
     const navigate = useNavigate();
     const profile = useContext(ProfileContext);
-    console.log(profile);
 
     return(
         <Card className="bg-secondary bg-opacity-25 p-4 rounded">
@@ -44,7 +43,7 @@ function Details(){
                             {profile?.linkedIn ? <span><BsLinkedin/> <a href={profile?.linkedIn}>LinkedIn</a></span> : null}
                         </Stack>
 
-                        {!isLoggedIn ? <Button className="mt-3" onClick={() => navigate('/settings')}>
+                        {profile?.username === state.username ? <Button className="mt-3" onClick={() => navigate('/settings')}>
                             Settings
                         </Button> : null}
                     </Col>

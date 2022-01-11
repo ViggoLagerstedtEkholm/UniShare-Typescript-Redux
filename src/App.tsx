@@ -7,18 +7,35 @@ import NavigationBarTop from "./Components/Nav/NavigationBarTop";
 import Profile from "./Components/Profile/Profile";
 import Overview from "./Components/Friends/Overview";
 import NotFound from "./Components/Shared/NotFound";
-import {AuthProvider} from "./Components/Context/AuthContext";
 import Settings from "./Components/Settings/Settings";
 import Discover from "./Components/Discover/Discover";
 import Course from "./Components/Course/Course";
+import {createContext, Dispatch, useReducer} from "react";
+import {AuthReducer, initialState, State} from "./Components/Context/AuthReducer";
+import {Action} from "redux";
+import ScrollTop from "./Components/Nav/ScrollTop";
+
+interface DispatchState {
+    state: State;
+    dispatch: Dispatch<Action>;
+}
+
+export const AuthContext = createContext<DispatchState>({
+    state: initialState,
+    dispatch: () => null,
+});
 
 function App() {
+    const [state, dispatch] = useReducer(AuthReducer, initialState);
+    const value = {state, dispatch};
+
     return (
-        <AuthProvider>
-            <Container fluid className="p-0">
-                <NavigationBarTop/>
-                <Container className="pt-4 vh-100">
-                    <Router>
+        <AuthContext.Provider value={value as DispatchState}>
+            <Router>
+                <Container fluid className="p-0">
+                    <NavigationBarTop/>
+                    <Container className="pt-4 vh-100">
+                        <ScrollTop/>
                         <Routes>
                             <Route path="/" element={<Home/>}/>
                             <Route path="/login" element={<Login/>}/>
@@ -30,10 +47,10 @@ function App() {
                             <Route path="/course/:id" element={<Course/>}/>
                             <Route path="*" element={<NotFound/>}/>
                         </Routes>
-                    </Router>
+                    </Container>
                 </Container>
-            </Container>
-        </AuthProvider>
+            </Router>
+        </AuthContext.Provider>
     );
 }
 

@@ -1,18 +1,14 @@
-import {useNavigate} from "react-router-dom";
 import React, {FormEvent, useState} from "react";
-import {RegisterAccount} from "../Service/AuthenticationService";
 import {Button, Form} from "react-bootstrap";
 
 export const Register: React.FC = () => {
-    const [email, setEmail] = useState<string>();
-    const [firstname, setFirstName] = useState<string>();
-    const [lastname, setLastName] = useState<string>();
-    const [username, setUsername] = useState<string>();
-    const [password, setPassword] = useState<string>();
-    const [age, setAge] = useState<number>(25);
-    const [passwordRepeat, setPasswordRepeat] = useState<string>();
-
-    const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [firstname, setFirstName] = useState("");
+    const [lastname, setLastName] = useState("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [age, setAge] = useState(25);
+    const [passwordRepeat, setPasswordRepeat] = useState("");
 
     const validate = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -30,12 +26,7 @@ export const Register: React.FC = () => {
             lastname: lastname,
         }
 
-        RegisterAccount(registerPayload).then(() => {
-            alert('Successfully registered account.');
-            navigate('/login');
-        }).catch(() => {
-            alert('Could not register.');
-        });
+        //TODO
     }
 
     return (

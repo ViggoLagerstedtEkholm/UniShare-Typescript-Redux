@@ -45,7 +45,7 @@ function Profile(){
         if(id){
             axios.post("https://localhost:5001/api/Profile/append/" + id).then(r => console.log(r));
         }
-    }, [])
+    }, [id])
 
     if(missing){
         return <NotFound/>

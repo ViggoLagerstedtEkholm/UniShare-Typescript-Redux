@@ -1,15 +1,15 @@
 import {Button, Container, Form, Image, Stack} from "react-bootstrap";
-import {useEffect, useState} from "react";
-import {useAuthContext} from "../Context/AuthContext";
+import {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import Loading from "../Shared/Loading";
+import {AuthContext} from "../../App";
 
 function Images(){
-    const user = useAuthContext();
+    const {state} = useContext(AuthContext);
     const [image, setImage] = useState("");
 
     useEffect(() =>{
-        axios.get<string>("https://localhost:5001/api/Profile/image/get/" + user.username)
+        axios.get<string>("https://localhost:5001/api/Profile/image/get/" + state.username)
             .then(response => setImage(response.data))
             .catch(error => console.log(error));
     }, [])

@@ -29,23 +29,22 @@ function CourseSearchPreviewItem(props: Props) {
                             />
                         </Col>
                     </Row>
+
                     <Row>
-                        <Col xl={9} md={12} sm={12}>
-                            <h4>{Highlight(course.name, search)}</h4>
-                        </Col>
+                        <h4 className="text-center">{Highlight(course.name, search)}</h4>
+                    </Row>
 
-                        <Col xl={3} md={12} sm={12}>
-                            <Button onClick={() => navigation('/course/' + course.id)} className="mx-2 my-2">
-                                Go to course page
-                            </Button>
+                    <Row>
+                        <Button onClick={() => navigation('/course/' + course.id)} className="mx-2 my-2">
+                            Go to course page
+                        </Button>
 
-                            {course.inActiveDegree ? <Button className="btn-danger mx-2 my-2">
-                                Remove
-                            </Button> : <Button className="btn-success mx-2 my-2">
-                                Add
-                            </Button>
-                            }
-                        </Col>
+                        {course.inActiveDegree ? <Button className="btn-danger mx-2 my-2">
+                            Remove from degree
+                        </Button> : <Button className="btn-success mx-2 my-2">
+                            Add
+                        </Button>
+                        }
                     </Row>
 
                     <hr/>

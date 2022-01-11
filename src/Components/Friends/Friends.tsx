@@ -1,17 +1,14 @@
 import {Container} from "react-bootstrap";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import axios from "axios";
-import {useAuthContext} from "../Context/AuthContext";
+import {AuthContext} from "../../App";
 
 interface Props{
     username?: string;
 }
 
 function Friends(props: Props){
-    const {
-        username
-    } = useAuthContext();
-
+    const {state} = useContext(AuthContext);
     const [friends, setFriends] = useState<any>();
 
     useEffect(() =>{
@@ -20,7 +17,7 @@ function Friends(props: Props){
                 .then(response => console.log(response.data))
                 .catch(error => console.log(error));
         }else{
-            axios.get('https://localhost:5001/api/Friends/friends/' + username)
+            axios.get('https://localhost:5001/api/Friends/friends/' + state.username)
                 .then(response => console.log(response.data))
                 .catch(error => console.log(error));
         }
