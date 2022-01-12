@@ -4,6 +4,7 @@ import axios from "axios";
 import {AuthContext} from "../../App";
 import jwtDecode from "jwt-decode";
 import {useNavigate} from "react-router-dom";
+import useLocalStorage, {STORED_VALUES} from "../Shared/useLocalStorage";
 
 export interface LoginResponse {
     token: string;
@@ -26,8 +27,11 @@ interface Token {
 
 export const Login: React.FC = () => {
     const { dispatch } = useContext(AuthContext);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("user@example.com");
+    const [password, setPassword] = useState("Abc!123XyzGhz");
+
+    const [setToken] = useLocalStorage(STORED_VALUES.TOKEN, '');
+    const [setRefreshToken] = useLocalStorage(STORED_VALUES.REFRESH_TOKEN, '');
 
     const navigation = useNavigate();
 
@@ -50,10 +54,11 @@ export const Login: React.FC = () => {
                 const LOGIN_ACTION = {
                     type: 'LOGIN_ACTION',
                     username: user.Username,
-                    token: res.token,
-                    refreshToken: res.refreshToken,
                     id: user.jti
                 }
+
+                setToken(res.token);
+                setRefreshToken(res.refreshToken);
 
                 dispatch(LOGIN_ACTION);
                 navigation('/profile/' + user.Username);

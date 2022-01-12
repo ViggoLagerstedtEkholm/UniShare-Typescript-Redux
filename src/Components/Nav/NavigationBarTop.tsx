@@ -2,10 +2,12 @@ import {Button, Container, Nav, Navbar} from "react-bootstrap";
 import {AuthContext} from "../../App";
 import {useContext} from "react";
 import {LOGOUT_ACTION} from "../Context/AuthReducer";
-import {useNavigate} from "react-router-dom";
+import useLocalStorage, {STORED_VALUES} from "../Shared/useLocalStorage";
 
 function NavigationBarTop() {
     const {state, dispatch} = useContext(AuthContext);
+    const [setToken] = useLocalStorage(STORED_VALUES.TOKEN, '');
+    const [setRefreshToken] = useLocalStorage(STORED_VALUES.REFRESH_TOKEN, '');
 
     function renderLoggedIn() {
         return (
@@ -30,6 +32,8 @@ function NavigationBarTop() {
     }
 
     function onLogout() {
+        setToken('');
+        setRefreshToken('');
         dispatch({type: 'LOGOUT_ACTION'});
     }
 
@@ -54,7 +58,6 @@ function NavigationBarTop() {
                     </Navbar.Text>
                 </>
                 }
-
             </Container>
         </Navbar>
     )
