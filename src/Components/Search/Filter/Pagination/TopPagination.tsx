@@ -1,6 +1,6 @@
 import {Button, Col, Row} from "react-bootstrap";
 import React from "react";
-import {useFilterContext} from "../../../Context/InputValueContext";
+import {useFilterContext} from "../../../Shared/FilterProvider";
 
 function TopPagination(){
     const {page, pagination, decrementPage, incrementPage} = useFilterContext();

@@ -1,8 +1,6 @@
 import {Container, Tab, Tabs} from "react-bootstrap";
 import Projects from "./Projects/Projects";
 import Degrees from "./Degrees/Degrees";
-import Thesis from "./Thesis";
-import Friends from "../Friends/Friends";
 
 function PortfolioBox(){
     return(
@@ -12,23 +10,9 @@ function PortfolioBox(){
                     <h2 className="bg-secondary bg-opacity-10 p-3">Projects</h2>
                     <Projects/>
                 </Tab>
-                <Tab eventKey="thesis" title="Thesis">
-                    <h2 className="bg-secondary bg-opacity-10 p-3">Thesis</h2>
-                    <Thesis/>
-                </Tab>
                 <Tab eventKey="degrees" title="Degree">
                     <h2 className="bg-secondary bg-opacity-10 p-3">Degrees</h2>
                     <Degrees/>
-                </Tab>
-                <Tab eventKey="ratings" title="Ratings">
-                    <h2 className="bg-secondary bg-opacity-10 p-3">Ratings</h2>
-                </Tab>
-                <Tab eventKey="reviews" title="Reviews">
-                    <h2 className="bg-secondary bg-opacity-10 p-3">Reviews</h2>
-                </Tab>
-                <Tab eventKey="friends" title="Friends">
-                    <h2 className="bg-secondary bg-opacity-10 p-3">Friends</h2>
-                    <Friends/>
                 </Tab>
             </Tabs>
         </Container>

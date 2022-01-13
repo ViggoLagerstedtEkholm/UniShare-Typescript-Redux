@@ -8,14 +8,14 @@ import { GoPerson } from "react-icons/go";
 import { BsFillEyeFill } from "react-icons/bs";
 import { MdDateRange } from "react-icons/md";
 
-import {useNavigate} from "react-router-dom";
+import {AuthContext} from "../../AppStateProvider";
 import {ProfileContext} from "./Profile";
-import {useContext} from "react";
-import {AuthContext} from "../../App";
 
+import {useNavigate} from "react-router-dom";
+import {useContext} from "react";
 
 function Details(){
-    const {state} = useContext(AuthContext);
+    const {authState} = useContext(AuthContext);
     const navigate = useNavigate();
     const profile = useContext(ProfileContext);
 
@@ -43,14 +43,14 @@ function Details(){
                             {profile?.linkedIn ? <span><BsLinkedin/> <a href={profile?.linkedIn}>LinkedIn</a></span> : null}
                         </Stack>
 
-                        {profile?.username === state.username ? <Button className="mt-3" onClick={() => navigate('/settings')}>
+                        {profile?.username === authState.username ? <Button className="mt-3" onClick={() => navigate('/settings')}>
                             Settings
                         </Button> : null}
                     </Col>
                     <Col xs={12} xl={12} md={12} sm={12} lg={6} className="mt-4">
                         <h2>Description</h2>
                         <p>
-                            {profile?.description ? profile?.description : <h4>No description set!</h4>}
+                            {profile?.description ? profile?.description : <b>No description set!</b>}
                         </p>
                     </Col>
                 </Row>

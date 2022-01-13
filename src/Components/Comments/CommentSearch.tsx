@@ -1,5 +1,5 @@
 import {Container} from "react-bootstrap";
-import {Filter, FilterProvider, OptionsMap, Order} from "../Context/InputValueContext";
+import {Filter, FilterProvider, OptionsMap, Order} from "../Shared/FilterProvider";
 import {UserSearch} from "../Discover/PeopleSearch/PeopleSearch";
 import FilterBox from "../Search/Filter/Main/FilterBox";
 
@@ -34,7 +34,7 @@ function CommentSearch({username}: Props){
             <h2>Comments</h2>
             <FilterProvider startFilter={filter}>
                 <FilterBox>
-                    <h1>Test!</h1>
+
                 </FilterBox>
             </FilterProvider>
         </Container>

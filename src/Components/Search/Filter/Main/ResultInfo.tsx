@@ -1,4 +1,4 @@
-import {useFilterContext} from "../../../Context/InputValueContext";
+import {useFilterContext} from "../../../Shared/FilterProvider";
 import {Row, Col} from "react-bootstrap";
 
 function ResultInfo(){

@@ -6,7 +6,7 @@ import Handles from "./Handles";
 import Password from "./Password";
 import {useNavigate} from "react-router-dom";
 import Images from "./Images";
-import {ConfirmContextProvider} from "../Shared/ConfirmContextProvider";
+import {ConfirmContextProvider} from "../Shared/Confirmation/ConfirmContextProvider";
 
 function Settings() {
     const [page, setPage] = useState(0);

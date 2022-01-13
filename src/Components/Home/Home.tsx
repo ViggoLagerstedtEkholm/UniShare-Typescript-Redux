@@ -4,7 +4,7 @@ import Overview from "./Overview";
 import ShowcaseUser from "../Shared/ShowcaseUser";
 import axios from "axios";
 import Courses from "./Courses/Courses";
-import {AuthContext} from "../../App";
+import {AuthContext} from "../../AppStateProvider";
 
 export interface Course {
     id: number;
@@ -29,7 +29,7 @@ export interface Statistics {
 export const OverviewContext = createContext<Statistics | null>(null);
 
 function Home() {
-    const {state} = useContext(AuthContext);
+    const {authState} = useContext(AuthContext);
     const [data, setData] = useState<Statistics | null>(null);
 
     useEffect(() => {
@@ -45,7 +45,7 @@ function Home() {
         <OverviewContext.Provider value={data}>
             <Stack className="gap-4">
                 {
-                    state?.isAuth ? <ShowcaseUser/> : <h2>Hello! Welcome to UniShare</h2>
+                    authState?.isAuth ? <ShowcaseUser/> : <h2>Hello! Welcome to UniShare</h2>
                 }
                 <Overview courses={data?.courses} users={data?.people}/>
                 <Courses/>

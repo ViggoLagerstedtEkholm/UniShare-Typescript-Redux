@@ -1,9 +1,9 @@
 import {Container, Spinner} from "react-bootstrap";
 import FilterBox from "../../Search/Filter/Main/FilterBox";
 import {useContext, useState} from "react";
-import {Filter, FilterProvider, OptionsMap, Order} from "../../Context/InputValueContext";
+import {Filter, FilterProvider, OptionsMap, Order} from "../../Shared/FilterProvider";
 import CourseSearchPreviewItem from "./CourseSearchPreviewItem";
-import {AuthContext} from "../../../App";
+import {AuthContext} from "../../../AppStateProvider";
 
 export interface Course {
     id: number;
@@ -34,7 +34,8 @@ export interface CourseSearch {
 function CoursesSearch(){
     const [results, setResults] = useState<CourseSearch | null>(null);
     const [search, setSearch] = useState("");
-    const {state} = useContext(AuthContext);
+
+    const {authState} = useContext(AuthContext);
 
     const options: OptionsMap = {
         Name: 'Name',
@@ -54,7 +55,7 @@ function CoursesSearch(){
         Order: Order.Descending,
         Options: options,
         ShowFilter: true,
-        ProfileId: state.id,
+        ProfileId: authState.id,
         SelectedOption: options.Name,
         APIEndpoint: 'https://localhost:5001/api/Search/courses',
         Result: onResults

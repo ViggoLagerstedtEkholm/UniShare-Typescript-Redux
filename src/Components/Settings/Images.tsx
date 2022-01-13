@@ -2,14 +2,14 @@ import {Button, Container, Form, Image, Stack} from "react-bootstrap";
 import {ChangeEvent, useContext, useEffect, useState} from "react";
 import axios from "axios";
 import Loading from "../Shared/Loading";
-import {AuthContext} from "../../App";
-import api from "../Service/api";
+import api from "../Service/AuthAPI";
 import {useNavigate} from "react-router-dom";
-import useConfirm from "../Shared/useConfirm";
-import ConfirmModal from "../Shared/ConfirmModal";
+import useConfirm from "../Shared/Confirmation/useConfirm";
+import ConfirmModal from "../Shared/Confirmation/ConfirmModal";
+import {AuthContext} from "../../AppStateProvider";
 
 function Images(){
-    const {state} = useContext(AuthContext);
+    const {authState} = useContext(AuthContext);
     const [image, setImage] = useState("");
     const [message, setMessage] = useState("");
     const [file, setFile] = useState<Blob | null>(null);
@@ -23,7 +23,7 @@ function Images(){
     const navigation = useNavigate();
 
     useEffect(() =>{
-        axios.get<string>("https://localhost:5001/api/Profile/image/get/" + state.username)
+        axios.get<string>("https://localhost:5001/api/Profile/image/get/" + authState.username)
             .then(response => setImage(response.data))
             .catch(() => setMessage("No image found!"));
     }, [])
@@ -45,7 +45,9 @@ function Images(){
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
-                }).then(() => navigation(0)).catch(() => setMessage('Could not upload image!'));
+                })
+                .then(() => navigation(0))
+                .catch(() => setMessage('Could not upload image!'));
         }else{
             setMessage('Please select a file to upload!');
         }

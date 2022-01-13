@@ -13,7 +13,7 @@ instance.interceptors.request.use(
     (config) => {
         const token = JSON.parse(localStorage.getItem(STORED_VALUES.TOKEN) as string);
 
-        if(token){
+        if (token) {
             config.headers["Authorization"] = 'Bearer ' + token; //Attach token to header.
         }
 
@@ -24,7 +24,16 @@ instance.interceptors.request.use(
     }
 );
 
-instance.interceptors.response.use((res) => {return res;},
+export interface RefreshToken {
+    token: string;
+    refreshToken: string;
+    success: boolean;
+    errors?: any;
+}
+
+instance.interceptors.response.use((res) => {
+        return res;
+    },
     async (err) => {
 
         const originalConfig = err.config;
@@ -36,10 +45,17 @@ instance.interceptors.response.use((res) => {return res;},
                 originalConfig._retry = true;
 
                 try {
-                    const response = await instance.post("/api/Authentication/RefreshToken", {token: token, refreshToken: refreshToken});
-                    console.log(response);
+                    const response = await instance.post<RefreshToken>("https://localhost:5001/api/Authentication/RefreshToken", {
+                        token: token,
+                        refreshToken: refreshToken
+                    });
 
-                    //localStorage.setItem(STORED_VALUES.TOKEN, JSON.stringify(response.data));
+                    const data = response.data;
+                    if (data.success) {
+                        localStorage.setItem(STORED_VALUES.TOKEN, JSON.stringify(data.token));
+                        localStorage.setItem(STORED_VALUES.REFRESH_TOKEN, JSON.stringify(data.refreshToken));
+                    }
+
                     return instance(originalConfig);
                 } catch (_error) {
                     return Promise.reject(_error);

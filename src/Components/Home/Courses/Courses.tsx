@@ -9,7 +9,7 @@ function Courses(){
     return(
         <Stack>
             {courses?.topCourses.map((value, index) =>{
-                return <CoursePreview course={value} index={index}/>
+                return <CoursePreview course={value} index={index} key={index}/>
             })}
         </Stack>
     )

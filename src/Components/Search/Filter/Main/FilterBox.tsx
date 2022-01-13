@@ -4,7 +4,7 @@ import Pagination from "../Pagination/Pagination";
 import TopPagination from "../Pagination/TopPagination";
 import {Stack} from "react-bootstrap";
 import axios from "axios";
-import {useFilterContext} from "../../../Context/InputValueContext";
+import {useFilterContext} from "../../../Shared/FilterProvider";
 import ResultInfo from "./ResultInfo";
 
 interface Props{
@@ -34,7 +34,7 @@ function FilterBox(props: Props) {
 
     return (
         <Stack>
-            <FilterConfigurationBox open={true}/>
+            <FilterConfigurationBox/>
             <ResultInfo/>
             <hr/>
             <TopPagination/>

@@ -1,6 +1,6 @@
 import React from "react";
 import {Button, Card, Col, Form, Row} from "react-bootstrap";
-import {useFilterContext} from "../../../Context/InputValueContext";
+import {useFilterContext} from "../../../Shared/FilterProvider";
 
 function PaginationBox() {
     const {page, incrementPage, decrementPage, goToPage, pagination} = useFilterContext();

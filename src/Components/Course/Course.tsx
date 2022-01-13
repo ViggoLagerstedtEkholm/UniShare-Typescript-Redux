@@ -49,7 +49,7 @@ function Course() {
         return <NotFound/>
     }
 
-    if(!isLoaded){
+    if (!isLoaded) {
         return (
             <Container className="d-flex flex-row justify-content-center align-items-center h-100">
                 <Loading/>

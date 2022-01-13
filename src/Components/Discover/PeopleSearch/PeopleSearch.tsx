@@ -1,5 +1,5 @@
 import {Container, Spinner} from "react-bootstrap";
-import {Filter, FilterProvider, OptionsMap, Order} from "../../Context/InputValueContext";
+import {Filter, FilterProvider, OptionsMap, Order} from "../../Shared/FilterProvider";
 import FilterBox from "../../Search/Filter/Main/FilterBox";
 import {useState} from "react";
 import {Pagination} from "../Courses/CoursesSearch";

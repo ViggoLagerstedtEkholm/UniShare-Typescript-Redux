@@ -1,5 +1,5 @@
 import {Card} from "react-bootstrap";
-import {useFilterContext} from "../../../Context/InputValueContext";
+import {useFilterContext} from "../../../Shared/FilterProvider";
 
 function FilterInfo() {
     const {order, search, selectedOption} = useFilterContext();

@@ -1,9 +1,9 @@
 import {Card, Col, Image, Row} from "react-bootstrap";
 import {useContext} from "react";
-import {AuthContext} from "../../App";
+import {AuthContext} from "../../AppStateProvider";
 
 function ShowcaseUser() {
-    const {state} = useContext(AuthContext);
+    const {authState} = useContext(AuthContext);
 
     return (
         <Row>
@@ -14,7 +14,7 @@ function ShowcaseUser() {
                             <Image src="https://picsum.photos/id/237/300/300" roundedCircle/>
                         </Col>
                         <Col xs={12} md={12} sm={12} lg={7}>
-                            <h2>{state.username}</h2>
+                            <h2>{authState.username}</h2>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed vestibulum eros, eu
                                 fringilla diam. Suspendisse vel imperdiet risus. Ut ut odio id tellus condimentum tincidunt

@@ -1,19 +1,19 @@
 import {Button, Container, Nav, Navbar} from "react-bootstrap";
-import {AuthContext} from "../../App";
 import {useContext} from "react";
-import {LOGOUT_ACTION} from "../Context/AuthReducer";
+import {LOGOUT_ACTION} from "../Shared/AuthReducer";
 import useLocalStorage, {STORED_VALUES} from "../Shared/useLocalStorage";
+import {AuthContext} from "../../AppStateProvider";
 
 function NavigationBarTop() {
-    const {state, dispatch} = useContext(AuthContext);
-    const [setToken] = useLocalStorage(STORED_VALUES.TOKEN, '');
-    const [setRefreshToken] = useLocalStorage(STORED_VALUES.REFRESH_TOKEN, '');
+    const {authState, authDispatch} = useContext(AuthContext);
+    const [,setToken] = useLocalStorage(STORED_VALUES.TOKEN, '');
+    const [,setRefreshToken] = useLocalStorage(STORED_VALUES.REFRESH_TOKEN, '');
 
     function renderLoggedIn() {
         return (
             <>
                 <Nav.Link href="/" className="text-white">Home</Nav.Link>
-                <Nav.Link href={"/#/profile/" + state.username} className="text-white">Profile</Nav.Link>
+                <Nav.Link href={"/#/profile/" + authState.username} className="text-white">Profile</Nav.Link>
                 <Nav.Link href="/#/friends/" className="text-white">Friends</Nav.Link>
                 <Nav.Link href="/#/discover" className="text-white">Discover</Nav.Link>
             </>
@@ -34,7 +34,7 @@ function NavigationBarTop() {
     function onLogout() {
         setToken('');
         setRefreshToken('');
-        dispatch({type: 'LOGOUT_ACTION'});
+        authDispatch({type: 'LOGOUT_ACTION'});
     }
 
     return (
@@ -44,13 +44,13 @@ function NavigationBarTop() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto text-white">
-                        {state.isAuth ? renderLoggedIn() : renderNotLoggedIn()}
+                        {authState.isAuth ? renderLoggedIn() : renderNotLoggedIn()}
                     </Nav>
                 </Navbar.Collapse>
 
-                {state.isAuth && <>
+                {authState.isAuth && <>
                     <Navbar.Text className="text-white">
-                        {state.username}
+                        {authState.username}
                     </Navbar.Text>
                     <Navbar.Text>
                         <Button href="/#/discover" className="text-white bg-transparent border-white mx-4"
