@@ -1,11 +1,10 @@
 import {useState} from "react";
 import {Button, Container, Modal} from "react-bootstrap";
 
-function VoteModal() {
+function Vote() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
 
     function onVote(){
         //VOTE HERE!
@@ -36,4 +35,4 @@ function VoteModal() {
     )
 }
 
-export default VoteModal;
+export default Vote;

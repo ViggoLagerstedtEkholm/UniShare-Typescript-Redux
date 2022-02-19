@@ -23,7 +23,7 @@ function Details(){
         <Card className="bg-secondary bg-opacity-25 p-4 rounded">
             <Card.Body>
                 <Row>
-                    <Col xs={12} xl={4} md={12} sm={12} lg={6} className="text-center">
+                    <Col xs={12} xl={4} md={12} sm={12} lg={6} className="text-center my-3">
                         {profile?.image ?
                             <Image src={`data:image/jpeg;base64,${profile?.image}`} width={300} height={300} roundedCircle/> :
                             <Image src="https://picsum.photos/id/235/300/300" roundedCircle/>

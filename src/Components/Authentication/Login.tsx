@@ -1,20 +1,14 @@
 import React, {FormEvent, useContext, useState} from 'react';
 import {Button, Form} from "react-bootstrap";
-import axios from "axios";
 import jwtDecode from "jwt-decode";
-import {useNavigate} from "react-router-dom";
 import useLocalStorage, {STORED_VALUES} from "../Shared/useLocalStorage";
+
+import {useNavigate} from "react-router-dom";
 import {AuthContext} from "../../AppStateProvider";
 import {Token} from "../../App";
+import {LoginToAccount} from "../Service/AuthenticationService";
 
-export interface LoginResponse {
-    token: string;
-    refreshToken: string;
-    success: boolean;
-    errors?: any;
-}
-
-export const Login: React.FC = () => {
+export const Login = () => {
     const { authDispatch } = useContext(AuthContext);
     const [email, setEmail] = useState("user@example.com");
     const [password, setPassword] = useState("Abc!123XyzGhz");
@@ -35,26 +29,22 @@ export const Login: React.FC = () => {
             password: password
         }
 
-        axios.post<LoginResponse>('https://localhost:5001/api/Authentication/Login', loginPayload)
-            .then(response => {
-                const res = response.data;
-                const user = jwtDecode<Token>(res.token);
+        LoginToAccount(loginPayload).then(response => {
+            const res = response.data;
+            const user = jwtDecode<Token>(res.token);
 
-                const LOGIN_ACTION = {
-                    type: 'LOGIN_ACTION',
-                    username: user.Username,
-                    id: user.jti
-                }
+            const LOGIN_ACTION = {
+                type: 'LOGIN_ACTION',
+                username: user.Username,
+                id: user.jti
+            }
 
-                setToken(res.token);
-                setRefreshToken(res.refreshToken);
+            setToken(res.token);
+            setRefreshToken(res.refreshToken);
 
-                authDispatch(LOGIN_ACTION);
-                navigation('/profile/' + user.Username);
-            })
-            .catch(error => {
-                console.log(error);
-            })
+            authDispatch(LOGIN_ACTION);
+            navigation('/profile/' + user.Username);
+        });
     }
 
     return (

@@ -1,7 +1,7 @@
-import {Badge, Card, Col, Image, Row} from "react-bootstrap";
-import {ProjectObject} from "./Projects";
+import { Badge, Card, Col, Image, Row } from "react-bootstrap";
+import { ProjectObject } from "./Projects";
 
-interface Props{
+interface Props {
     project: ProjectObject
 }
 
@@ -14,7 +14,7 @@ function Project(item: Props) {
                 <Row>
                     <Col xl={4} md={6} sm={12} className="text-center">
                         {project.image ?
-                            <Image src={`data:image/jpeg;base64,${project.image}`} width={300} height={300} roundedCircle/> : null
+                            <Image src={`data:image/jpeg;base64,${project.image}`} width={300} height={300} roundedCircle /> : null
                         }
                     </Col>
                     <Col xl={8} md={6} sm={12}>

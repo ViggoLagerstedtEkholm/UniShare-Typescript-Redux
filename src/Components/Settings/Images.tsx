@@ -4,8 +4,6 @@ import axios from "axios";
 import Loading from "../Shared/Loading";
 import api from "../Service/AuthAPI";
 import {useNavigate} from "react-router-dom";
-import useConfirm from "../Shared/Confirmation/useConfirm";
-import ConfirmModal from "../Shared/Confirmation/ConfirmModal";
 import {AuthContext} from "../../AppStateProvider";
 
 function Images(){
@@ -13,12 +11,6 @@ function Images(){
     const [image, setImage] = useState("");
     const [message, setMessage] = useState("");
     const [file, setFile] = useState<Blob | null>(null);
-
-    const {confirm} = useConfirm();
-
-    const showConfirm = async () => {
-        return await confirm('Do you confirm your choice?');
-    }
 
     const navigation = useNavigate();
 
@@ -53,19 +45,9 @@ function Images(){
         }
     }
 
-    function remove(){
-        showConfirm()
-            .then(confirmed => {
-                if(confirmed){
-                    api.post("https://localhost:5001/api/Profile/image/remove")
-                        .then(() => navigation(0));
-                }
-            });
-    }
 
     return(
         <Container className="text-center">
-            <ConfirmModal/>
             <h2>Current image</h2>
             <hr/>
 
@@ -84,7 +66,7 @@ function Images(){
                 </Form.Group>
 
                 <Stack className="gap-2">
-                    <Button className="btn-danger" onClick={remove}>
+                    <Button className="btn-danger">
                         Remove Image
                     </Button>
 

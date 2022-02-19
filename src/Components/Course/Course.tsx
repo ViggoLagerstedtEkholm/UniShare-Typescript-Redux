@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import axios from "axios";
 import {Badge, Card, Col, Container, Row} from "react-bootstrap";
 import NotFound from "../Shared/NotFound";
-import VoteModal from "./VoteModal";
+import VoteModal from "./Vote";
 import Loading from "../Shared/Loading";
 
 export interface RootObject {

@@ -6,7 +6,6 @@ import Handles from "./Handles";
 import Password from "./Password";
 import {useNavigate} from "react-router-dom";
 import Images from "./Images";
-import {ConfirmContextProvider} from "../Shared/Confirmation/ConfirmContextProvider";
 
 function Settings() {
     const [page, setPage] = useState(0);
@@ -29,22 +28,20 @@ function Settings() {
 
     return (
         <Container>
-            <ConfirmContextProvider>
-                <Row>
-                    <Button className="w-25 bg-transparent border-white mx-3 mb-4" onClick={() => navigation(-1)}>
-                        Go back
-                    </Button>
-                    <hr/>
-                </Row>
-                <Row className="vh-100">
-                    <Col md={4}>
-                        <Sidebar setPage={setPage}/>
-                    </Col>
-                    <Col md={8}>
-                        {show()}
-                    </Col>
-                </Row>
-            </ConfirmContextProvider>
+            <Row>
+                <Button className="w-25 bg-transparent border-white mx-3 mb-4" onClick={() => navigation(-1)}>
+                    Go back
+                </Button>
+                <hr/>
+            </Row>
+            <Row className="vh-100">
+                <Col md={4}>
+                    <Sidebar setPage={setPage}/>
+                </Col>
+                <Col md={8}>
+                    {show()}
+                </Col>
+            </Row>
         </Container>
     )
 }

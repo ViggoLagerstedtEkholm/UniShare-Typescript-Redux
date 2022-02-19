@@ -1,1 +1,1 @@
-export const API = 'https://unisharesapi.azurewebsites.net';
+export const API = 'https://localhost:5001/api';
