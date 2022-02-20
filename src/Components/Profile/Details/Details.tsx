@@ -8,7 +8,7 @@ import { GoPerson } from "react-icons/go";
 import { BsFillEyeFill } from "react-icons/bs";
 import { MdDateRange } from "react-icons/md";
 
-import {AuthContext} from "../../AppStateProvider";
+import {AuthContext} from "../../../AppStateProvider";
 import {ProfileContext} from "./Profile";
 
 import {useNavigate} from "react-router-dom";

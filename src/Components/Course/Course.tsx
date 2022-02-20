@@ -1,10 +1,10 @@
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import axios from "axios";
-import {Badge, Card, Col, Container, Row} from "react-bootstrap";
+import {Badge, Button, Card, Col, Container, Row} from "react-bootstrap";
 import NotFound from "../Shared/NotFound";
-import VoteModal from "./Vote";
 import Loading from "../Shared/Loading";
+import { useNavigate } from 'react-router-dom';
 
 export interface RootObject {
     id: number;
@@ -34,6 +34,7 @@ function Course() {
     const [isLoaded, setIsLoaded] = useState(false);
 
     const {id} = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get<RootObject>("https://localhost:5001/api/Course/" + id)
@@ -59,25 +60,24 @@ function Course() {
 
     return (
         <Container>
+            <Button className="mb-4" onClick={() => navigate(-1)}>Go back</Button>
             <Row>
                 <h1>{course?.name}</h1>
             </Row>
 
-            <Row className="gap-2">
-                <Col xl={7} md={8} sm={6}>
+            <Row xs="auto" className="bg-secondary p-4 bg-opacity-10 rounded">
+                <Col>
+                    <b>Total votes - </b> {statistics?.count}
+                </Col>
+                <Col>
+                    <b>Rating - </b> {statistics?.rating}
+                </Col>
+            </Row>
+
+            <Row className="gap-2 my-5">
                     <p>{course?.description}</p>
                     <a href={course?.link}>{course?.link.slice(0, 100)}...</a>
-                </Col>
 
-                <Col xl={3} md={2} sm={3}>
-                    <Card className="bg-secondary bg-opacity-10 text-center rounded mb-2">
-                        <Card.Body>
-                            <h4>Total votes</h4> <Badge className="mb-3">{statistics?.count}</Badge>
-                            <h4>Rating</h4> <Badge className="mb-3">{statistics?.rating}</Badge>
-                            <hr/>
-                            <VoteModal/>
-                        </Card.Body>
-                    </Card>
                     <Card className="bg-secondary bg-opacity-10 text-center rounded">
                         <Card.Body>
                             <h4>Credits</h4> <Badge className="mb-3">{course?.credits}</Badge>
@@ -86,7 +86,6 @@ function Course() {
                             <h4>Country</h4> <Badge className="mb-3">{course?.country}</Badge>
                         </Card.Body>
                     </Card>
-                </Col>
             </Row>
         </Container>
     )

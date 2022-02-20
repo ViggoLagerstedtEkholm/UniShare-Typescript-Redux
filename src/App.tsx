@@ -4,7 +4,6 @@ import {HashRouter as Router, Route, Routes} from "react-router-dom";
 import {Register} from "./Components/Authentication/Register";
 import {Container} from "react-bootstrap";
 import NavigationBarTop from "./Components/Nav/NavigationBarTop";
-import Profile from "./Components/Profile/Profile";
 import Overview from "./Components/Friends/Overview";
 import NotFound from "./Components/Shared/NotFound";
 import Settings from "./Components/Settings/Settings";
@@ -13,9 +12,10 @@ import Course from "./Components/Course/Course";
 import ScrollTop from "./Components/Nav/ScrollTop";
 import {AuthContext} from "./AppStateProvider";
 import useLocalStorage, {STORED_VALUES} from "./Components/Shared/useLocalStorage";
-import {useContext, useEffect} from "react";
+import {useContext, useEffect, useState} from "react";
 import jwtDecode from "jwt-decode";
 import RequireAuth from "./Components/Shared/RequireAuth";
+import Profile from "./Components/Profile/Details/Profile";
 
 export interface Token {
     Id: string;
@@ -32,6 +32,7 @@ export interface Token {
 function App() {
     const [token] = useLocalStorage(STORED_VALUES.TOKEN, '');
     const {authState, authDispatch} = useContext(AuthContext);
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
         if (token && !authState.isAuth) {
@@ -40,12 +41,17 @@ function App() {
             const LOGIN_ACTION = {
                 type: 'LOGIN_ACTION',
                 username: user.Username,
-                id: user.jti
+                id: user.Id
             }
 
             authDispatch(LOGIN_ACTION);
         }
+        setLoaded(true);
     }, [])
+
+    if(!loaded){
+        return <h1>Loading...</h1>
+    }
 
     return (
         <Router>

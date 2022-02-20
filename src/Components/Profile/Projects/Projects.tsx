@@ -1,7 +1,7 @@
 import Project from "./Project";
 import { Stack } from "react-bootstrap";
 import { useContext, useEffect, useState } from "react";
-import { ProfileContext } from "../Profile";
+import { ProfileContext } from "../Details/Profile";
 import axios from "axios";
 import Loading from "../../Shared/Loading";
 

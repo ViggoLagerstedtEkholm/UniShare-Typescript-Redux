@@ -1,8 +1,8 @@
 import {Container, Tab, Tabs} from "react-bootstrap";
-import Projects from "./Projects/Projects";
-import Degrees from "./Degrees/Degrees";
-import AddProject from "./Projects/Add";
-import AddDegree from "./Degrees/Add";
+import Projects from "../Projects/Projects";
+import Degrees from "../Degrees/Degrees";
+import AddProject from "../Projects/Add";
+import AddDegree from "../Degrees/Add";
 
 function PortfolioBox(){
     return(

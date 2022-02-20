@@ -3,10 +3,10 @@ import {Container, Stack} from "react-bootstrap";
 import PortfolioBox from "./PortfolioBox";
 import Details from "./Details";
 import {createContext, useEffect, useState} from "react";
-import Loading from "../Shared/Loading";
-import NotFound from "../Shared/NotFound";
-import CommentSearch from "../Comments/CommentSearch";
-import { AppendVisit, FetchProfile, FetchUser, IProfile } from "../Service/UserService";
+import Loading from "../../Shared/Loading";
+import NotFound from "../../Shared/NotFound";
+import CommentSearch from "../../Comments/CommentSearch";
+import { AppendVisit, FetchProfile, FetchUser, IProfile } from "../../Service/UserService";
 
 export const ProfileContext = createContext<IProfile | null>(null);
 

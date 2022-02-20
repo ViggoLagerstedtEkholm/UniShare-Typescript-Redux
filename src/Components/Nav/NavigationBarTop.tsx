@@ -1,6 +1,5 @@
 import {Button, Container, Nav, Navbar} from "react-bootstrap";
 import {useContext} from "react";
-import {LOGOUT_ACTION} from "../Shared/AuthReducer";
 import useLocalStorage, {STORED_VALUES} from "../Shared/useLocalStorage";
 import {AuthContext} from "../../AppStateProvider";
 

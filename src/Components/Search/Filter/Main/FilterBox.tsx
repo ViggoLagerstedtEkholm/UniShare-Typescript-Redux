@@ -16,6 +16,7 @@ function FilterBox(props: Props) {
 
     useEffect(() => {
         const query = async () => {
+            console.log(ProfileId);
             return await axios.post(api, {
                 Page: page,
                 Order: order,

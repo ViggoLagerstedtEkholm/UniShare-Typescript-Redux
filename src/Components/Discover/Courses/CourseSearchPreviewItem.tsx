@@ -6,6 +6,8 @@ import {Highlight} from "../../Shared/Highlight";
 
 // @ts-ignore
 import CourseDefault from '../../../Images/CourseDefault.png';
+import { ToggleCourseToDegree } from "../../Service/CourseService";
+import { useState } from "react";
 
 interface Props {
     course: Course;
@@ -16,6 +18,24 @@ function CourseSearchPreviewItem(props: Props) {
     const course = props.course;
     const search = props.search;
     const navigation = useNavigate();
+
+    const[inActiveDegree, setInActiveDegree] = useState(course.inActiveDegree);
+
+    const toggleToActiveDegree = async (e: any) => {
+        e.preventDefault();
+        
+        ToggleCourseToDegree(course.id).then(wasInserted => {
+            if (wasInserted) {
+                setInActiveDegree(true);
+            }else{
+                setInActiveDegree(false);
+            }
+        }).catch(() =>{
+            if (window.confirm("You do not have an active degree, do you want to add a new degree?")) {
+
+            }
+        });
+    }
 
     return (
         <Card className="bg-secondary bg-opacity-10 mx-2 my-2">
@@ -39,9 +59,11 @@ function CourseSearchPreviewItem(props: Props) {
                             Go to course page
                         </Button>
 
-                        {course.inActiveDegree ? <Button className="btn-danger mx-2 my-2">
+                        {inActiveDegree ? 
+                        <Button className="btn-danger mx-2 my-2" onClick={toggleToActiveDegree}>
                             Remove from degree
-                        </Button> : <Button className="btn-success mx-2 my-2">
+                        </Button> : 
+                        <Button className="btn-success mx-2 my-2" onClick={toggleToActiveDegree}>
                             Add
                         </Button>
                         }

@@ -1,9 +1,8 @@
 import {Spinner, Stack} from "react-bootstrap";
 import Degree from "./Degree";
 import {useContext, useEffect, useState} from "react";
-import axios from "axios";
-import {ProfileContext} from "../Profile";
 import { GetDegrees, IDegrees } from "../../Service/DegreeService";
+import { ProfileContext } from "../Details/Profile";
 
 function Degrees(){
     const profile = useContext(ProfileContext);
@@ -15,7 +14,6 @@ function Degrees(){
             .then((response) => setData(response))
             .catch((error) => console.log(error));
         }
-          
     }, [])
 
     return(
