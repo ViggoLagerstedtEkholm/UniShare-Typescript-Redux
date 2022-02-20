@@ -1,4 +1,5 @@
 import { Badge, Card, Col, Image, Row } from "react-bootstrap";
+import { HiMenuAlt4 } from "react-icons/hi";
 import { ProjectObject } from "./Projects";
 
 interface Props {
@@ -11,19 +12,19 @@ function Project(item: Props) {
     return (
         <Card className="bg-secondary bg-opacity-10">
             <Card.Body>
-                <Row>
-                    <Col xl={4} md={6} sm={12} className="text-center">
+                <Row className="p-4">
+                    <Col xl={4} md={6} sm={12} className="text-center rounded">
                         {project.image ?
                             <Image src={`data:image/jpeg;base64,${project.image}`} width={300} height={300} roundedCircle /> : null
                         }
                     </Col>
-                    <Col xl={8} md={6} sm={12}>
+                    <Col xl={8} md={6} sm={12} className="p-4">
                         <h1>
                             {project.name}
                         </h1>
-                        <p>
+                        <h5>
                             {project.description}
-                        </p>
+                        </h5>
                         <p>
                             {project.added}
                         </p>

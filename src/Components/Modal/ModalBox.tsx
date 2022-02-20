@@ -15,7 +15,7 @@ const customStyles = {
         margin: 'auto',
         marginTop: '70px',
         padding: '20px',
-        height: 'auto'
+        height: 'auto',
     },
 };
 
@@ -38,14 +38,14 @@ export default function ModalBox({ children, text, headerText }: Props) {
 
     return (
         <>
-            <Button onClick={openModal}>{text}</Button>
-            <Modal isOpen={modalIsOpen} onAfterOpen={afterOpenModal} onRequestClose={closeModal} style={customStyles} contentLabel="Example Modal">
+            <Button onClick={openModal} className="my-4">{text}</Button>
+            <Modal isOpen={modalIsOpen} onAfterOpen={afterOpenModal} onRequestClose={closeModal} style={customStyles} contentLabel="Example Modal" className="bg-dark rounded">
                 <Row>
                     <Col>
                         <h1>{headerText}</h1>
                     </Col>
-                    <Col>
-                        <HiOutlineX size={50} onClick={closeModal} />
+                    <Col className="d-flex flex-row-reverse">
+                        <HiOutlineX size={50} onClick={closeModal}/>
                     </Col>
                 </Row>
                 <hr />
